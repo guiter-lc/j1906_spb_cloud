@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{insert}" method="post">
+    部门名称：<input type="text" name="dname" value=""/>
+    部门地址：<input type="text" name="loc" value=""/>
+    <input type="submit" value="addDept"/>
+</form>
+</body>
+</html>

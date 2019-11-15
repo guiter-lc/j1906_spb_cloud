@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+</head>
+<body>
+    <h2>index</h2>
+
+    <a href="/add">添加</a><br>
+    <table id="depts">
+
+    </table>
+
+<script>
+    $(document).ready(function () {
+        ajax();
+    });
+    function ajax(){
+        $.ajax({
+            url:"/depts",
+            async:true,
+            type:"post",
+            success:function (data) {
+                var html="<tr>\n" +
+                    "            <th>编号</th>\n" +
+                    "            <th>部门名称</th>\n" +
+                    "            <th>部门地点</th>\n" +
+                    "            <th>操作</th>\n" +
+                    "        </tr>";
+                for (var i=0;i<data.length;i++){
+                    html+="<tr>\n" +
+                        "            <td>"+data[i].deptno+"</td>\n" +
+                        "            <td>"+data[i].dname+"</td>\n" +
+                        "            <td>"+data[i].loc+"</td>\n" +
+                        "            <td><button onclick='update("+data[i].deptno+")'>修改</button><button onclick='deleteById("+data[i].deptno+")'>删除</button></td>\n" +
+                        "        </tr>";
+                }
+                $("#depts").html(html);
+            },
+            error:function (data) {
+                alert("加载失败");
+            }
+
+        });
+    }
+    
+    function update(id) {
+        location.href="/dept?id="+id;
+    }
+    function deleteById(id) {
+        location.href="/delete?id="+id;
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+server:
+  port: 9091
+spring:
+  application:
+    name: service-discover
+eureka:
+  client:
+    service-url:
+     defalutZone: http://localhost:8761/eureka
